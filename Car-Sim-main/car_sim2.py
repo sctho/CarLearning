@@ -228,7 +228,7 @@ class Car:
                 return_values[len(radars) + i] = int(distance_to_other_car / 30)
                 return_values[len(radars) + len(other_cars) + i] = int(other_car.speed / 5)
 
-        return return_values
+        return return_values[:9]
 
     def is_alive(self):
         # Basic Alive Function
@@ -443,10 +443,6 @@ def joint_run_simulation(genomes, config):
 
         # For Each Car Get The Acton It Takes
         for i, car in enumerate(cars):
-
-            for net in nets:
-                print("Number of Input Nodes:", len(net.input_nodes))
-
             output = nets[i].activate(car.get_data2(cars))
             choice = output.index(max(output))
             if choice == 0:
